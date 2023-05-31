@@ -24,15 +24,17 @@ def dataplex_pubsub(event, context):
     print("============= Data ==============")
     print(data)
 
-    # # the attributes being accessed here is dependent on the message being routed from log
-    # project_id = data['protoPayload']['serviceData']['jobCompletedEvent']['job']['jobConfiguration']['load']['destinationTable']['projectId']
-    # dataset_id = data['protoPayload']['serviceData']['jobCompletedEvent']['job']['jobConfiguration']['load']['destinationTable']['datasetId']
-    # table_id = data['protoPayload']['serviceData']['jobCompletedEvent']['job']['jobConfiguration']['load']['destinationTable']['tableId']
+    # the attributes being accessed here is dependent on the message being routed from log
+    project_id = data['protoPayload']['serviceData']['tableInsertRequest']['resource']['tableName']['projectId']
+    dataset_id = data['protoPayload']['serviceData']['tableInsertRequest']['resource']['tableName']['datasetId']
+    table_id = data['protoPayload']['serviceData']['tableInsertRequest']['resource']['tableName']['tableId']
 
-    # # get table object and schema from payload data
-    # table_ref = f"{project_id}.{dataset_id}.{table_id}"
-    # target_table = bq_client.get_table(table_ref)
-    # table_schema = target_table.schema
+    # get table object and schema from payload data
+    table_ref = f"{project_id}.{dataset_id}.{table_id}"
+    target_table = bq_client.get_table(table_ref)
+    table_schema = target_table.schema
+
+    print(table_schema)
 
     # dataplex = DataplexService.DataplexService(project_id, dataset_id, table_id)
 
