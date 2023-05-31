@@ -56,4 +56,4 @@ jobs:
           memory_mb: "4096MB"
           timeout: 540
           event_trigger_type: google.pubsub.topic.publish
-          event_trigger_resource: projects/astra-digital-governance/topics/bigquery_to_dataplex
+          event_trigger_resource: projects/astra-digital-governance/topics/dataplex_trigger_pubsub
