@@ -2,7 +2,7 @@ import base64
 import json
 from google.cloud import bigquery
 
-def dataplex_pubsub(event):
+def dataplex_pubsub(event, context):
     """Triggered from a message on a Cloud Pub/Sub topic for BQ load job completed events.
     Args:
          event (dict): Event payload.
@@ -15,7 +15,13 @@ def dataplex_pubsub(event):
     pubsub_message = base64.b64decode(event['data']).decode('utf-8')
     data = json.loads(pubsub_message)
 
-    print("==========================")
+    print("============= Event ==============")
+    print(event)
+
+    print("============= Context ==============")
+    print(context)
+
+    print("============= Data ==============")
     print(data)
 
     # # the attributes being accessed here is dependent on the message being routed from log
